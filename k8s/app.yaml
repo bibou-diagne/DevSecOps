@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gestion-cotisations
+  namespace: cotisations
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gestion-cotisations
+  template:
+    metadata:
+      labels:
+        app: gestion-cotisations
+    spec:
+      containers:
+        - name: gestion-cotisations
+          image: gestion-cotisations:latest
+          imagePullPolicy: Never
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gestion-cotisations
+  namespace: cotisations
+spec:
+  selector:
+    app: gestion-cotisations
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP

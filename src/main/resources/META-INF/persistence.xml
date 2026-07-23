@@ -21,9 +21,9 @@
             <property name="jakarta.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/gestion_cotisations?useSSL=false&amp;serverTimezone=UTC"/>
-            <property name="jakarta.persistence.jdbc.user"     value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="Passer123"/>
+value="jdbc:mysql://mysql.cotisations.svc.cluster.local:3306/gestion_cotisations?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user"     value="DB_USER_PLACEHOLDER"/>
+            <property name="jakarta.persistence.jdbc.password" value="DB_PASSWORD_PLACEHOLDER"/>
 
             <!-- Hibernate -->
             <property name="hibernate.dialect"

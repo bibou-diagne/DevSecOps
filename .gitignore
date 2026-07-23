@@ -7,3 +7,4 @@ target/
 .classpath
 .project
 "@ | Out-File -FilePath ".gitignore" -Encoding utf8
+docker/mysql-init/*.sql
