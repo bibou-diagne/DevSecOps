@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  gitleaks:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout du code
@@ -20,13 +20,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build:
-    needs: gitleaks
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout du code
-        uses: actions/checkout@v4
-
       - name: Configurer Java 17
         uses: actions/setup-java@v4
         with:
@@ -35,3 +28,9 @@ jobs:
 
       - name: Build Maven
         run: mvn clean install
+
+      - name: Analyse SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
