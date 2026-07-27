@@ -13,12 +13,24 @@ spec:
       labels:
         app: gestion-cotisations
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: gestion-cotisations
           image: gestion-cotisations:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
           readinessProbe:
             httpGet:
               path: /login
