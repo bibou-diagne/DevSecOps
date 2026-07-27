@@ -58,3 +58,15 @@ jobs:
           framework: kubernetes
           soft_fail: false
           skip_check: CKV_K8S_15,CKV_K8S_20,CKV_K8S_22,CKV_K8S_23,CKV_K8S_29,CKV_K8S_30,CKV_K8S_31,CKV_K8S_35,CKV_K8S_40,CKV_K8S_43,CKV2_K8S_5,CKV2_K8S_6,CKV_K8S_14,CKV_K8S_25
+      - name: Connexion à Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push image vers Docker Hub
+        run: |
+          docker tag gestion-cotisations:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/gestion-cotisations:${{ github.sha }}
+          docker tag gestion-cotisations:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/gestion-cotisations:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/gestion-cotisations:${{ github.sha }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/gestion-cotisations:latest
