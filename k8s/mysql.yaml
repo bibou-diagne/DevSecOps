@@ -4,6 +4,8 @@ metadata:
   name: mysql
   namespace: cotisations
 spec:
+  strategy:
+    type: Recreate
   replicas: 1
   selector:
     matchLabels:
