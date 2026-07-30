@@ -22,7 +22,7 @@
   </div>
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Connectez-vous à votre espace personnel modifie_V2</p>
+      <p class="login-box-msg">Connectez-vous à votre espace personnel</p>
 
       <% if (request.getAttribute("erreur") != null) { %>
       <div class="alert alert-danger">
