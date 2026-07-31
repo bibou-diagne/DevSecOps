@@ -22,7 +22,7 @@
   </div>
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Connectez-vous à votre espace personnel test pipeline</p>
+      <p class="login-box-msg">Connectez-vous à votre espace</p>
 
       <% if (request.getAttribute("erreur") != null) { %>
       <div class="alert alert-danger">
