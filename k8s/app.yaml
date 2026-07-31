@@ -16,7 +16,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: gestion-cotisations
-          image: biboudiagne/gestion-cotisations:3e756d4a958e5feca979d46ea6c51fd645fa2f97
+          image: biboudiagne/gestion-cotisations:f1ea37f36a695d615141457bf82965d4a07f1137
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
